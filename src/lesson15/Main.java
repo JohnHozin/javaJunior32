@@ -10,25 +10,24 @@ public class Main {
         try {
             FileInputStream fin = new FileInputStream("C://Java/ip.txt");
             int i;
-            String result ="";
-            while ((i=fin.read())!=-1){
-                if (i==13) continue;
-                else if (i==10) {
+            String result = "";
+            while ((i = fin.read()) != -1) {
+                if (i == 13) continue;
+                else if (i == 10) {
                     String ip = result.split(":")[0];
                     int port = Integer.parseInt(result.split(":")[1]);
                     Thread thread = new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            checkProxy(ip,port);
+                            checkProxy(ip, port);
                         }
                     });
                     thread.start();
                     result = "";
-                }
-                else if (i==9){
-                    result +=":";
+                } else if (i == 9) {
+                    result += ":";
                 } else {
-                    result+=(char) i;
+                    result += (char) i;
                 }
             }
         } catch (Exception e) {
@@ -36,7 +35,7 @@ public class Main {
         }
     }
 
-    public static void checkProxy(String ip,int port){
+    public static void checkProxy(String ip, int port) {
         try {
             Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(ip, port));
             URL url = new URL("https://vozhzhaev.ru/test.php");
