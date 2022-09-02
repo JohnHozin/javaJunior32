@@ -11,5 +11,9 @@ public class Main1 {
 
         System.out.println();
 
+        for (String ph: phoneBook.keySet()){
+            System.out.println(ph);
+        }
+
     }
 }
